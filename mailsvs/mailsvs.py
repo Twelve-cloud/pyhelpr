@@ -16,8 +16,7 @@ import re
 POP3_MAIL_SERVER = 'pop.mail.ru'
 IMAP_MAIL_SERVER = 'imap.mail.ru'
 SMTP_MAIL_SERVER = 'smpt.mail.ru'
-MAIL_USERNAME = 'ilyasavin26091999@mail.ru'
-MAIL_PASSWORD = 'fuqt0VebexX0LMbp2S3c'
+
 
 
 def pop3():

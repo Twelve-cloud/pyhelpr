@@ -5,18 +5,18 @@ mapattrs.py: Provides instruments for mapping attributes with their inheritance 
 """
 
 
-from typing import Union
+from typing import Union, Any, Type
 import pprint
 
 
-def trace(obj, label='', end='\n') -> None:
+def trace(obj: Any, label: str = '', end: str = '\n') -> None:
     """
     trace: Provides beautiful output.
     """
     print(label + pprint.pformat(obj) + end)
 
 
-def filterdictvals(dict_, value_) -> dict:
+def filterdictvals(dict_: dict, value_: Any) -> dict:
     """
     filterdictvals: Returns dictionary dict_ without value value_.
     filterdictvals(dict(a=1, b=2, c=1), 1) => {'b': 2}.
@@ -24,18 +24,18 @@ def filterdictvals(dict_, value_) -> dict:
     return {key: value for (key, value) in dict_.items() if value != value_}
 
 
-def invertdict(dict_) -> dict:
+def invertdict(dict_: dict) -> dict:
     """
     invertdict: Inverts dict, where values become keys and keys become values.
     invertdict(dict(a=1, b=2, c=1)) => {1: ['a', 'c'], 2: ['b']}.
     """
-    def keysof(value_):
+    def keysof(value_: Any):
         return sorted(key for key in dict_.keys() if dict_[key] == value_)
 
     return {value: keysof(value) for value in set(dict_.values())}
 
 
-def dflr(cls) -> list:
+def dflr(cls: Type) -> list:
     """
     dflr: Returns inheritance path for Python 2.X classic classes,
     or for any classes when classes don't have diamond structure.
@@ -48,7 +48,7 @@ def dflr(cls) -> list:
     return here
 
 
-def inheritance(instance) -> Union[list, tuple]:
+def inheritance(instance: Any) -> Union[list, tuple]:
     """
     inheritance: Returns inheritance path for any classes (DFLR for Python 2.X classic classes
     and non-diamod structure) and (MRO for Python2.X new-style classes and Python 3.X all classes).
@@ -59,7 +59,7 @@ def inheritance(instance) -> Union[list, tuple]:
         return [instance] + dflr(instance.__class__)
 
 
-def mapattrs(instance, withobject=False, bysource=False) -> dict:
+def mapattrs(instance: Any, withobject: bool = False, bysource: bool = False) -> dict:
     """
     mapattrs: Returns dict with keys, which represent inherited attributes of instance and values
     which represent objects from which attributes has been inherited.

@@ -1,10 +1,25 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-pybench.py: Tests speed of one or more Python versions. System runs on
+speedr.py: Tests speed of one or more Python versions. System runs on
 Python 2.X and Python 3.X and can print output in both versions. Timeit module
 is used to test speed. Changes $listif3 to list in generators for Python 3.X
 and to empty string for Python 2.X to force Python 3.X work as Python 2.X.
+
+pythons = [
+    (0, 'env python2'),
+    (1, 'env python3')
+]
+
+stmts = [
+    (0, 0, '[x ** 2 for x in range(1000)]'),
+    (0, 0, 'res=[]\nfor x in range(1000): res.append(x ** 2)'),
+    (0, 0, '$listif3(map(lambda x: x ** 2, range(1000)))')
+]
+
+tracecmd = '-t' in sys.argv
+pythons = pythons if '-a' in sys.argv else None
+runner(stmts, pythons, tracecmd)
 """
 
 
