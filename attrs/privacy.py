@@ -2,6 +2,42 @@
 # -*- coding: utf-8 -*-
 """
 privacy.py: Instruments that emulate private and public section from other languages.
+
+Usage:
+@private('name', 'age', '__str__')
+class Person:
+    def __init__(self, name, age, job):
+        self.name = name
+        self.age = age
+        self.job = job
+
+    def __str__(self):
+        return self.name
+
+
+mark = Person('mark', 22, 'programmer')
+print(mark.job)
+# print(mark.age)
+# mark.name = 'Not Mark'
+# print(mark)
+
+
+@public('name', 'age')
+class Person2:
+    def __init__(self, name, age, job):
+        self.name = name
+        self.age = age
+        self.job = job
+
+    def __str__(self):
+        return self.name
+
+
+mark = Person2('mark', 22, 'programmer')
+print(mark.age)
+mark.name = 'Not Mark'
+print(mark)
+# print(mark.job)
 """
 
 
