@@ -35,9 +35,9 @@ def timer(label: str = '', trace: bool = True) -> Callable:
     Returns:
         Callable: original decorator.
     """
-    def onDecorator(func: Callable) -> Callable:
+    def on_decorator(func: Callable) -> Callable:
         """
-        onDecorator is an original decorator.
+        on_decorator is an original decorator.
 
         Args:
             func (Callable): original function.
@@ -45,9 +45,9 @@ def timer(label: str = '', trace: bool = True) -> Callable:
         Returns:
             Callable: wrapper for function.
         """
-        def onCall(*args: tuple, **kwargs: dict) -> Any:
+        def on_call(*args: tuple, **kwargs: dict) -> Any:
             """
-            onCall is a wrapper for original function.
+            on_call is a wrapper for original function.
 
             Returns:
                 Any: returns what function returns.
@@ -56,20 +56,20 @@ def timer(label: str = '', trace: bool = True) -> Callable:
             result = func(*args, **kwargs)
             performing_time = clock() - start
 
-            onCall.total += performing_time
+            on_call.total += performing_time
 
-            if performing_time < onCall.best:
-                onCall.best = performing_time
+            if performing_time < on_call.best:
+                on_call.best = performing_time
 
             if trace:
                 print(
                     f'{label}{func.__name__}: {performing_time:.5f}, '
-                    f'{onCall.total:.5f}, {onCall.best:.5f}'
+                    f'{on_call.total:.5f}, {on_call.best:.5f}'
                 )
 
             return result
 
-        onCall.total = 0
-        onCall.best = sys.maxsize
-        return onCall
-    return onDecorator
+        on_call.total = 0
+        on_call.best = sys.maxsize
+        return on_call
+    return on_decorator
